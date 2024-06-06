@@ -103,6 +103,7 @@ dependencies {
     implementation(libs.androidx.window.core)
     implementation(libs.kotlinx.coroutines.guava)
     implementation(libs.coil.kt)
+    implementation(project(":core:speak"))
 
     ksp(libs.hilt.compiler)
 

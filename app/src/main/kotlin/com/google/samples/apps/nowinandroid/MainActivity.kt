@@ -16,6 +16,7 @@
 
 package com.google.samples.apps.nowinandroid
 
+import TextSpeaker
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
@@ -79,6 +80,9 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var userNewsResourceRepository: UserNewsResourceRepository
+
+    @Inject
+    lateinit var textToSpeech: TextSpeaker
 
     val viewModel: MainActivityViewModel by viewModels()
 
