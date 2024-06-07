@@ -16,7 +16,7 @@
 
 package com.google.samples.apps.nowinandroid
 
-import TextSpeaker
+import com.mezkall.speak.TextSpeaker
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
@@ -142,6 +142,7 @@ class MainActivity : ComponentActivity() {
                 networkMonitor = networkMonitor,
                 userNewsResourceRepository = userNewsResourceRepository,
                 timeZoneMonitor = timeZoneMonitor,
+                textSpeaker = textToSpeech,
             )
 
             val currentTimeZone by appState.currentTimeZone.collectAsStateWithLifecycle()

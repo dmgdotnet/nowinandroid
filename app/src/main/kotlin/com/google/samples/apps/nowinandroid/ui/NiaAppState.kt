@@ -45,6 +45,7 @@ import com.google.samples.apps.nowinandroid.navigation.TopLevelDestination
 import com.google.samples.apps.nowinandroid.navigation.TopLevelDestination.BOOKMARKS
 import com.google.samples.apps.nowinandroid.navigation.TopLevelDestination.FOR_YOU
 import com.google.samples.apps.nowinandroid.navigation.TopLevelDestination.INTERESTS
+import com.mezkall.speak.TextSpeaker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -61,6 +62,7 @@ fun rememberNiaAppState(
     timeZoneMonitor: TimeZoneMonitor,
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
+    textSpeaker: TextSpeaker,
 ): NiaAppState {
     NavigationTrackingSideEffect(navController)
     return remember(
@@ -70,6 +72,7 @@ fun rememberNiaAppState(
         networkMonitor,
         userNewsResourceRepository,
         timeZoneMonitor,
+        textSpeaker,
     ) {
         NiaAppState(
             navController = navController,
@@ -78,6 +81,7 @@ fun rememberNiaAppState(
             networkMonitor = networkMonitor,
             userNewsResourceRepository = userNewsResourceRepository,
             timeZoneMonitor = timeZoneMonitor,
+            textSpeaker = textSpeaker,
         )
     }
 }
@@ -90,7 +94,10 @@ class NiaAppState(
     networkMonitor: NetworkMonitor,
     userNewsResourceRepository: UserNewsResourceRepository,
     timeZoneMonitor: TimeZoneMonitor,
+    val textSpeaker: TextSpeaker,
 ) {
+    fun speakText(text: String) = textSpeaker.speak(text)
+
     val currentDestination: NavDestination?
         @Composable get() = navController
             .currentBackStackEntryAsState().value?.destination
@@ -179,6 +186,7 @@ class NiaAppState(
     }
 
     fun navigateToSearch() = navController.navigateToSearch()
+
 }
 
 /**
