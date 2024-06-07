@@ -108,6 +108,7 @@ import com.google.samples.apps.nowinandroid.core.ui.newsFeed
 @Composable
 internal fun ForYouRoute(
     onTopicClick: (String) -> Unit,
+    onClickAction: (String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: ForYouViewModel = hiltViewModel(),
 ) {
@@ -128,6 +129,7 @@ internal fun ForYouRoute(
         onNewsResourcesCheckedChanged = viewModel::updateNewsResourceSaved,
         onNewsResourceViewed = { viewModel.setNewsResourceViewed(it, true) },
         modifier = modifier,
+        onClickAction = onClickAction,
     )
 }
 
@@ -144,6 +146,7 @@ internal fun ForYouScreen(
     onNewsResourcesCheckedChanged: (String, Boolean) -> Unit,
     onNewsResourceViewed: (String) -> Unit,
     modifier: Modifier = Modifier,
+    onClickAction: (String) -> Unit,
 ) {
     val isOnboardingLoading = onboardingUiState is OnboardingUiState.Loading
     val isFeedLoading = feedState is NewsFeedUiState.Loading
@@ -195,6 +198,7 @@ internal fun ForYouScreen(
                 onNewsResourcesCheckedChanged = onNewsResourcesCheckedChanged,
                 onNewsResourceViewed = onNewsResourceViewed,
                 onTopicClick = onTopicClick,
+                onClickAction = onClickAction,
             )
 
             item(span = StaggeredGridItemSpan.FullLine, contentType = "bottomSpacing") {
@@ -521,6 +525,7 @@ fun ForYouScreenPopulatedFeed(
             onNewsResourceViewed = {},
             onTopicClick = {},
             onDeepLinkOpened = {},
+            onClickAction = {},
         )
     }
 }
@@ -545,6 +550,7 @@ fun ForYouScreenOfflinePopulatedFeed(
             onNewsResourceViewed = {},
             onTopicClick = {},
             onDeepLinkOpened = {},
+            onClickAction = {},
         )
     }
 }
@@ -572,6 +578,7 @@ fun ForYouScreenTopicSelection(
             onNewsResourceViewed = {},
             onTopicClick = {},
             onDeepLinkOpened = {},
+            onClickAction = {},
         )
     }
 }
@@ -591,6 +598,7 @@ fun ForYouScreenLoading() {
             onNewsResourceViewed = {},
             onTopicClick = {},
             onDeepLinkOpened = {},
+            onClickAction = {},
         )
     }
 }
@@ -615,6 +623,7 @@ fun ForYouScreenPopulatedAndLoading(
             onNewsResourceViewed = {},
             onTopicClick = {},
             onDeepLinkOpened = {},
+            onClickAction = {},
         )
     }
 }

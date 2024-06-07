@@ -43,15 +43,18 @@ fun NiaNavHost(
     startDestination: String = FOR_YOU_ROUTE,
 ) {
     val navController = appState.navController
+    val textSpeaker = appState.textSpeaker
     NavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = modifier,
     ) {
-        forYouScreen(onTopicClick = navController::navigateToInterests)
+        //todo add text speaker
+        forYouScreen(onTopicClick = navController::navigateToInterests, onClickAction = textSpeaker::speak)
         bookmarksScreen(
             onTopicClick = navController::navigateToInterests,
             onShowSnackbar = onShowSnackbar,
+            onClickAction = textSpeaker::speak
         )
         searchScreen(
             onBackClick = navController::popBackStack,

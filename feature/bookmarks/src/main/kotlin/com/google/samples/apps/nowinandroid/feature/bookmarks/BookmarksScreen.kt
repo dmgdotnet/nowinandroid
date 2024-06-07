@@ -81,6 +81,7 @@ internal fun BookmarksRoute(
     onShowSnackbar: suspend (String, String?) -> Boolean,
     modifier: Modifier = Modifier,
     viewModel: BookmarksViewModel = hiltViewModel(),
+    onClickAction: (String) -> Unit,
 ) {
     val feedState by viewModel.feedUiState.collectAsStateWithLifecycle()
     BookmarksScreen(
@@ -93,6 +94,7 @@ internal fun BookmarksRoute(
         shouldDisplayUndoBookmark = viewModel.shouldDisplayUndoBookmark,
         undoBookmarkRemoval = viewModel::undoBookmarkRemoval,
         clearUndoState = viewModel::clearUndoState,
+        onClickAction = onClickAction,
     )
 }
 
@@ -111,6 +113,7 @@ internal fun BookmarksScreen(
     shouldDisplayUndoBookmark: Boolean = false,
     undoBookmarkRemoval: () -> Unit = {},
     clearUndoState: () -> Unit = {},
+    onClickAction: (String) -> Unit,
 ) {
     val bookmarkRemovedMessage = stringResource(id = R.string.feature_bookmarks_removed)
     val undoText = stringResource(id = R.string.feature_bookmarks_undo)
@@ -139,6 +142,7 @@ internal fun BookmarksScreen(
                 onNewsResourceViewed,
                 onTopicClick,
                 modifier,
+                onClickAction,
             )
         } else {
             EmptyState(modifier)
@@ -166,6 +170,7 @@ private fun BookmarksGrid(
     onNewsResourceViewed: (String) -> Unit,
     onTopicClick: (String) -> Unit,
     modifier: Modifier = Modifier,
+    onClickAction: (String) -> Unit,
 ) {
     val scrollableState = rememberLazyStaggeredGridState()
     TrackScrollJank(scrollableState = scrollableState, stateName = "bookmarks:grid")
@@ -188,6 +193,7 @@ private fun BookmarksGrid(
                 onNewsResourcesCheckedChanged = { id, _ -> removeFromBookmarks(id) },
                 onNewsResourceViewed = onNewsResourceViewed,
                 onTopicClick = onTopicClick,
+                onClickAction =  onClickAction,
             )
             item(span = StaggeredGridItemSpan.FullLine) {
                 Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.safeDrawing))
@@ -274,6 +280,7 @@ private fun BookmarksGridPreview(
             removeFromBookmarks = {},
             onNewsResourceViewed = {},
             onTopicClick = {},
+            onClickAction = {},
         )
     }
 }

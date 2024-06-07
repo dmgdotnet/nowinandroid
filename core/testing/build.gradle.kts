@@ -30,6 +30,7 @@ dependencies {
     api(projects.core.data)
     api(projects.core.model)
     api(projects.core.notifications)
+    implementation(project(":core:speak"))
 
     debugApi(libs.androidx.compose.ui.testManifest)
 

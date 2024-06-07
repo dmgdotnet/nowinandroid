@@ -29,8 +29,9 @@ fun NavController.navigateToBookmarks(navOptions: NavOptions) = navigate(BOOKMAR
 fun NavGraphBuilder.bookmarksScreen(
     onTopicClick: (String) -> Unit,
     onShowSnackbar: suspend (String, String?) -> Boolean,
+    onClickAction: (String) -> Unit,
 ) {
     composable(route = BOOKMARKS_ROUTE) {
-        BookmarksRoute(onTopicClick, onShowSnackbar)
+        BookmarksRoute(onTopicClick, onShowSnackbar, onClickAction = onClickAction)
     }
 }

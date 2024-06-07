@@ -77,6 +77,7 @@ internal fun TopicRoute(
     onTopicClick: (String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: TopicViewModel = hiltViewModel(),
+    onClickAction: (String) -> Unit,
 ) {
     val topicUiState: TopicUiState by viewModel.topicUiState.collectAsStateWithLifecycle()
     val newsUiState: NewsUiState by viewModel.newsUiState.collectAsStateWithLifecycle()
@@ -92,6 +93,7 @@ internal fun TopicRoute(
         onBookmarkChanged = viewModel::bookmarkNews,
         onNewsResourceViewed = { viewModel.setNewsResourceViewed(it, true) },
         onTopicClick = onTopicClick,
+        onClickAction = onClickAction,
     )
 }
 
@@ -107,6 +109,7 @@ internal fun TopicScreen(
     onBookmarkChanged: (String, Boolean) -> Unit,
     onNewsResourceViewed: (String) -> Unit,
     modifier: Modifier = Modifier,
+    onClickAction: (String) -> Unit,
 ) {
     val state = rememberLazyListState()
     TrackScrollJank(scrollableState = state, stateName = "topic:screen")
@@ -146,6 +149,7 @@ internal fun TopicScreen(
                         onBookmarkChanged = onBookmarkChanged,
                         onNewsResourceViewed = onNewsResourceViewed,
                         onTopicClick = onTopicClick,
+                        onClickAction = onClickAction,
                     )
                 }
             }
@@ -193,13 +197,14 @@ private fun LazyListScope.topicBody(
     onBookmarkChanged: (String, Boolean) -> Unit,
     onNewsResourceViewed: (String) -> Unit,
     onTopicClick: (String) -> Unit,
+    onClickAction: (String) -> Unit,
 ) {
     // TODO: Show icon if available
     item {
         TopicHeader(name, description, imageUrl)
     }
 
-    userNewsResourceCards(news, onBookmarkChanged, onNewsResourceViewed, onTopicClick)
+    userNewsResourceCards(news, onBookmarkChanged, onNewsResourceViewed, onTopicClick, onClickAction)
 }
 
 @Composable
@@ -232,6 +237,7 @@ private fun LazyListScope.userNewsResourceCards(
     onBookmarkChanged: (String, Boolean) -> Unit,
     onNewsResourceViewed: (String) -> Unit,
     onTopicClick: (String) -> Unit,
+    onClickAction: (String) -> Unit,
 ) {
     when (news) {
         is NewsUiState.Success -> {
@@ -241,6 +247,7 @@ private fun LazyListScope.userNewsResourceCards(
                 onNewsResourceViewed = onNewsResourceViewed,
                 onTopicClick = onTopicClick,
                 itemModifier = Modifier.padding(24.dp),
+                onClickAction = onClickAction,
             )
         }
 
@@ -267,6 +274,7 @@ private fun TopicBodyPreview() {
                 onBookmarkChanged = { _, _ -> },
                 onNewsResourceViewed = {},
                 onTopicClick = {},
+                onClickAction = {},
             )
         }
     }
@@ -332,6 +340,7 @@ fun TopicScreenPopulated(
                 onBookmarkChanged = { _, _ -> },
                 onNewsResourceViewed = {},
                 onTopicClick = {},
+                onClickAction = {},
             )
         }
     }
@@ -351,6 +360,7 @@ fun TopicScreenLoading() {
                 onBookmarkChanged = { _, _ -> },
                 onNewsResourceViewed = {},
                 onTopicClick = {},
+                onClickAction = {},
             )
         }
     }

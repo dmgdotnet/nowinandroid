@@ -34,6 +34,7 @@ import com.google.samples.apps.nowinandroid.core.data.repository.CompositeUserNe
 import com.google.samples.apps.nowinandroid.core.testing.repository.TestNewsRepository
 import com.google.samples.apps.nowinandroid.core.testing.repository.TestUserDataRepository
 import com.google.samples.apps.nowinandroid.core.testing.util.TestNetworkMonitor
+import com.google.samples.apps.nowinandroid.core.testing.util.TestTextSpeaker
 import com.google.samples.apps.nowinandroid.core.testing.util.TestTimeZoneMonitor
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -63,6 +64,8 @@ class NiaAppStateTest {
 
     private val timeZoneMonitor = TestTimeZoneMonitor()
 
+    private val textSpeaker = TestTextSpeaker()
+
     private val userNewsResourceRepository =
         CompositeUserNewsResourceRepository(TestNewsRepository(), TestUserDataRepository())
 
@@ -83,6 +86,7 @@ class NiaAppStateTest {
                     networkMonitor = networkMonitor,
                     userNewsResourceRepository = userNewsResourceRepository,
                     timeZoneMonitor = timeZoneMonitor,
+                    textSpeaker = textSpeaker,
                 )
             }
 
@@ -106,6 +110,7 @@ class NiaAppStateTest {
                 networkMonitor = networkMonitor,
                 userNewsResourceRepository = userNewsResourceRepository,
                 timeZoneMonitor = timeZoneMonitor,
+                textSpeaker = textSpeaker,
             )
         }
 
@@ -125,6 +130,7 @@ class NiaAppStateTest {
                 networkMonitor = networkMonitor,
                 userNewsResourceRepository = userNewsResourceRepository,
                 timeZoneMonitor = timeZoneMonitor,
+                textSpeaker = textSpeaker,
             )
         }
 
@@ -142,6 +148,7 @@ class NiaAppStateTest {
                 networkMonitor = networkMonitor,
                 userNewsResourceRepository = userNewsResourceRepository,
                 timeZoneMonitor = timeZoneMonitor,
+                textSpeaker = textSpeaker,
             )
         }
 
@@ -159,6 +166,7 @@ class NiaAppStateTest {
                 networkMonitor = networkMonitor,
                 userNewsResourceRepository = userNewsResourceRepository,
                 timeZoneMonitor = timeZoneMonitor,
+                textSpeaker = textSpeaker,
             )
         }
 
@@ -176,6 +184,7 @@ class NiaAppStateTest {
                 networkMonitor = networkMonitor,
                 userNewsResourceRepository = userNewsResourceRepository,
                 timeZoneMonitor = timeZoneMonitor,
+                textSpeaker = textSpeaker,
             )
         }
 
@@ -197,6 +206,7 @@ class NiaAppStateTest {
                 networkMonitor = networkMonitor,
                 userNewsResourceRepository = userNewsResourceRepository,
                 timeZoneMonitor = timeZoneMonitor,
+                textSpeaker = textSpeaker,
             )
         }
         val changedTz = TimeZone.of("Europe/Prague")

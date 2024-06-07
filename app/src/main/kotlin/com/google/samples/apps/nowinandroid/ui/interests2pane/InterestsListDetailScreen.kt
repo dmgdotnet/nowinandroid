@@ -148,6 +148,7 @@ internal fun InterestsListDetailScreen(
                             showBackButton = !listDetailNavigator.isListPaneVisible(),
                             onBackClick = listDetailNavigator::navigateBack,
                             onTopicClick = ::onTopicClickShowDetailPane,
+                            onClickAction = { },
                         )
                         composable(route = TOPIC_ROUTE) {
                             TopicDetailPlaceholder()

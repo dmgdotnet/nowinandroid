@@ -32,7 +32,7 @@ private const val DEEP_LINK_URI_PATTERN =
 
 fun NavController.navigateToForYou(navOptions: NavOptions) = navigate(FOR_YOU_ROUTE, navOptions)
 
-fun NavGraphBuilder.forYouScreen(onTopicClick: (String) -> Unit) {
+fun NavGraphBuilder.forYouScreen(onTopicClick: (String) -> Unit, onClickAction: (String) -> Unit) {
     composable(
         route = FOR_YOU_ROUTE,
         deepLinks = listOf(
@@ -42,6 +42,6 @@ fun NavGraphBuilder.forYouScreen(onTopicClick: (String) -> Unit) {
             navArgument(LINKED_NEWS_RESOURCE_ID) { type = NavType.StringType },
         ),
     ) {
-        ForYouRoute(onTopicClick)
+        ForYouRoute(onTopicClick, onClickAction)
     }
 }

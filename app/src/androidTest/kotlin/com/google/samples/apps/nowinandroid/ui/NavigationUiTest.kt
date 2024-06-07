@@ -35,6 +35,7 @@ import com.google.samples.apps.nowinandroid.core.rules.GrantPostNotificationsPer
 import com.google.samples.apps.nowinandroid.core.testing.repository.TestNewsRepository
 import com.google.samples.apps.nowinandroid.core.testing.repository.TestUserDataRepository
 import com.google.samples.apps.nowinandroid.uitesthiltmanifest.HiltComponentActivity
+import com.mezkall.speak.TextSpeaker
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -87,6 +88,9 @@ class NavigationUiTest {
 
     @Inject
     lateinit var timeZoneMonitor: TimeZoneMonitor
+
+    @Inject
+    lateinit var textToSpeech: TextSpeaker
 
     @Before
     fun setup() {
@@ -243,5 +247,6 @@ class NavigationUiTest {
         networkMonitor = networkMonitor,
         userNewsResourceRepository = userNewsResourceRepository,
         timeZoneMonitor = timeZoneMonitor,
+        textSpeaker = textToSpeech,
     )
 }

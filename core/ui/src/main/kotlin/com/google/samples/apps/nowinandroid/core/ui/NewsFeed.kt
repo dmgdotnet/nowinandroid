@@ -52,6 +52,7 @@ fun LazyStaggeredGridScope.newsFeed(
     onNewsResourceViewed: (String) -> Unit,
     onTopicClick: (String) -> Unit,
     onExpandedCardClick: () -> Unit = {},
+    onClickAction: (String) -> Unit,
 ) {
     when (feedState) {
         NewsFeedUiState.Loading -> Unit
@@ -73,8 +74,9 @@ fun LazyStaggeredGridScope.newsFeed(
                         analyticsHelper.logNewsResourceOpened(
                             newsResourceId = userNewsResource.id,
                         )
-                        launchCustomChromeTab(context, Uri.parse(userNewsResource.url), backgroundColor)
-
+                        //launchCustomChromeTab(context, Uri.parse(userNewsResource.url), backgroundColor)
+                        //Toast.makeText(context, "This is a Toast num 2", Toast.LENGTH_SHORT).show()
+                        onClickAction(userNewsResource.content)
                         onNewsResourceViewed(userNewsResource.id)
                     },
                     hasBeenViewed = userNewsResource.hasBeenViewed,
@@ -134,6 +136,7 @@ private fun NewsFeedLoadingPreview() {
                 onNewsResourcesCheckedChanged = { _, _ -> },
                 onNewsResourceViewed = {},
                 onTopicClick = {},
+                onClickAction = {},
             )
         }
     }
@@ -153,6 +156,7 @@ private fun NewsFeedContentPreview(
                 onNewsResourcesCheckedChanged = { _, _ -> },
                 onNewsResourceViewed = {},
                 onTopicClick = {},
+                onClickAction = {},
             )
         }
     }

@@ -137,6 +137,7 @@ internal fun SearchScreen(
     onBackClick: () -> Unit = {},
     onInterestsClick: () -> Unit = {},
     onTopicClick: (String) -> Unit = {},
+    onClickAction: (String) -> Unit = {},
 ) {
     TrackScreenViewEvent(screenName = "Search")
     Column(modifier = modifier) {
@@ -193,6 +194,7 @@ internal fun SearchScreen(
                         onNewsResourcesCheckedChanged = onNewsResourcesCheckedChanged,
                         onNewsResourceViewed = onNewsResourceViewed,
                         onFollowButtonClick = onFollowButtonClick,
+                        onClickAction = onClickAction,
                     )
                 }
             }
@@ -287,6 +289,7 @@ private fun SearchResultBody(
     onNewsResourcesCheckedChanged: (String, Boolean) -> Unit,
     onNewsResourceViewed: (String) -> Unit,
     onFollowButtonClick: (String, Boolean) -> Unit,
+    onClickAction: (String) -> Unit,
 ) {
     val state = rememberLazyStaggeredGridState()
     Box(
@@ -361,6 +364,7 @@ private fun SearchResultBody(
                     onExpandedCardClick = {
                         onSearchTriggered(searchQuery)
                     },
+                    onClickAction = onClickAction,
                 )
             }
         }

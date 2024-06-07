@@ -59,6 +59,7 @@ class BookmarksScreenTest {
                 removeFromBookmarks = {},
                 onTopicClick = {},
                 onNewsResourceViewed = {},
+                onClickAction = {},
             )
         }
 
@@ -80,6 +81,7 @@ class BookmarksScreenTest {
                 removeFromBookmarks = {},
                 onTopicClick = {},
                 onNewsResourceViewed = {},
+                onClickAction = {},
             )
         }
 
@@ -124,6 +126,7 @@ class BookmarksScreenTest {
                 },
                 onTopicClick = {},
                 onNewsResourceViewed = {},
+                onClickAction = {},
             )
         }
 
@@ -156,6 +159,7 @@ class BookmarksScreenTest {
                 removeFromBookmarks = {},
                 onTopicClick = {},
                 onNewsResourceViewed = {},
+                onClickAction = {},
             )
         }
 
@@ -188,6 +192,7 @@ class BookmarksScreenTest {
                     clearUndoState = {
                         undoStateCleared = true
                     },
+                    onClickAction = {},
                 )
             }
         }

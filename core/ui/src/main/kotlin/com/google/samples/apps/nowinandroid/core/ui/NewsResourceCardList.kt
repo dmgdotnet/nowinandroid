@@ -17,6 +17,7 @@
 package com.google.samples.apps.nowinandroid.core.ui
 
 import android.net.Uri
+import android.widget.Toast
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
@@ -39,6 +40,7 @@ fun LazyListScope.userNewsResourceCardItems(
     onNewsResourceViewed: (String) -> Unit,
     onTopicClick: (String) -> Unit,
     itemModifier: Modifier = Modifier,
+    onClickAction: (String) -> Unit,
 ) = items(
     items = items,
     key = { it.id },
@@ -57,7 +59,9 @@ fun LazyListScope.userNewsResourceCardItems(
                 analyticsHelper.logNewsResourceOpened(
                     newsResourceId = userNewsResource.id,
                 )
-                launchCustomChromeTab(context, resourceUrl, backgroundColor)
+                //launchCustomChromeTab(context, resourceUrl, backgroundColor)
+                //Toast.makeText(context, "This is a Toast num 1", Toast.LENGTH_SHORT).show()
+                onClickAction(userNewsResource.content)
                 onNewsResourceViewed(userNewsResource.id)
             },
             onTopicClick = onTopicClick,

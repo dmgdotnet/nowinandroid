@@ -55,6 +55,7 @@ fun NavGraphBuilder.topicScreen(
     showBackButton: Boolean,
     onBackClick: () -> Unit,
     onTopicClick: (String) -> Unit,
+    onClickAction: (String) -> Unit,
 ) {
     composable(
         route = "topic_route/{$TOPIC_ID_ARG}",
@@ -66,6 +67,7 @@ fun NavGraphBuilder.topicScreen(
             showBackButton = showBackButton,
             onBackClick = onBackClick,
             onTopicClick = onTopicClick,
+            onClickAction = onClickAction,
         )
     }
 }

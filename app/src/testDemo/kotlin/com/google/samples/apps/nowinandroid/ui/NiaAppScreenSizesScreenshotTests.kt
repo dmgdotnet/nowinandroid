@@ -36,6 +36,7 @@ import com.google.samples.apps.nowinandroid.core.data.util.TimeZoneMonitor
 import com.google.samples.apps.nowinandroid.core.designsystem.theme.NiaTheme
 import com.google.samples.apps.nowinandroid.core.testing.util.DefaultRoborazziOptions
 import com.google.samples.apps.nowinandroid.uitesthiltmanifest.HiltComponentActivity
+import com.mezkall.speak.TextSpeaker
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -102,6 +103,9 @@ class NiaAppScreenSizesScreenshotTests {
     @Inject
     lateinit var userNewsResourceRepository: UserNewsResourceRepository
 
+    @Inject
+    lateinit var textToSpeech: TextSpeaker
+
     @Before
     fun setup() {
         hiltRule.inject()
@@ -138,6 +142,7 @@ class NiaAppScreenSizesScreenshotTests {
                             networkMonitor = networkMonitor,
                             userNewsResourceRepository = userNewsResourceRepository,
                             timeZoneMonitor = timeZoneMonitor,
+                            textSpeaker = textToSpeech
                         )
                         NiaApp(fakeAppState)
                     }
