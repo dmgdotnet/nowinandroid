@@ -96,8 +96,6 @@ class NiaAppState(
     timeZoneMonitor: TimeZoneMonitor,
     val textSpeaker: TextSpeaker,
 ) {
-    fun speakText(text: String) = textSpeaker.speak(text)
-
     val currentDestination: NavDestination?
         @Composable get() = navController
             .currentBackStackEntryAsState().value?.destination

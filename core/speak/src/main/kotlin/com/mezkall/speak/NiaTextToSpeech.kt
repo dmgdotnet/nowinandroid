@@ -13,7 +13,9 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 internal class NiaTextToSpeech @Inject constructor(
     @ApplicationContext private val context: Context,
 ) : TextSpeaker {
