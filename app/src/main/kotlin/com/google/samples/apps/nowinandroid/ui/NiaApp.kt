@@ -143,14 +143,25 @@ internal fun NiaApp(
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         snackbarHost = { SnackbarHost(snackbarHostState) },
         bottomBar = {
-            if (appState.shouldShowBottomBar) {
-                NiaBottomBar(
-                    destinations = appState.topLevelDestinations,
-                    destinationsWithUnreadResources = unreadDestinations,
-                    onNavigateToDestination = appState::navigateToTopLevelDestination,
-                    currentDestination = appState.currentDestination,
-                    modifier = Modifier.testTag("NiaBottomBar"),
-                )
+            Column{
+                if (appState.shouldShowBottomBar) {
+                    NiaBottomBar(
+                        destinations = appState.topLevelDestinations,
+                        destinationsWithUnreadResources = unreadDestinations,
+                        onNavigateToDestination = appState::navigateToTopLevelDestination,
+                        currentDestination = appState.currentDestination,
+                        modifier = Modifier.testTag("NiaBottomBar"),
+                    )
+                }
+                if (appState.shouldShowPlayerBar) {
+                    NiaBottomBar(
+                        destinations = appState.topLevelDestinations,
+                        destinationsWithUnreadResources = unreadDestinations,
+                        onNavigateToDestination = appState::navigateToTopLevelDestination,
+                        currentDestination = appState.currentDestination,
+                        modifier = Modifier.testTag("NiaBottomBar"),
+                    )
+                }
             }
         },
     ) { padding ->
